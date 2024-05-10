@@ -12,7 +12,7 @@
     <script src="js/bootstrap.js"></script>
       
 </head>
-<body>
+<body style="background-color: #f2f2f2;">
 
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1efef;">
     <div class="container-fluid">
@@ -56,20 +56,24 @@
 
   <div class="container" style="text-align: center;">
     <div class="row">
-      <div class="col" style="border-radius: 20px; border: 3px solid black;">
-        <a href="https://luca732112.github.io">
-          <img src="img/piano_basico.jpg" width="100%" alt="">
-        </a>
-        <p>
-          El primer curso del Método Musihacks. 
-          Descubre las bases. Entiende el piano como un sistema.
-        </p>
+      <div class="col">
+        <div class="card" style="width: 400px; border-top-left-radius: 5% 5% ; border-top-right-radius:  5% 5% ; border-bottom-right-radius: 5% 5%; border-bottom-left-radius: 5% 5%; overflow: hidden;">
+          <img src="img/piano_basico.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <h5 class="card-title" style="color: #2c3e50;"> Piano Básico</h5>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"  style=" width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p class="card-text" style="color: #2c3e50;">El primer curso del Método Musihacks. <br> Descubre las bases. Entiende el piano como un sistema.</p>
+            <a href="https://luca732112.github.io" id="btn-entrar" class="btn btn-primary">Entrar</a>
+          </div>
+        </div>
       </div>
       <div class="col">
-        <img src="img/piano_melodias.jpg" width="100%" alt="">
+        <img src="img/piano_melodias.jpg" width="400" alt="" style="border-top-left-radius: 5% 5% ; border-top-right-radius:  5% 5% ; overflow: hidden;">
       </div>
       <div class="col">
-        <img src="img/piano_desafios.jpg" width="100%" alt="">
+        <img src="img/piano_desafios.jpg" width="400" alt=""style="border-top-left-radius: 5% 5% ; border-top-right-radius:  5% 5% ; overflow: hidden;">
       </div>
     </div>
   </div>
@@ -77,4 +81,11 @@
   <script src="js/jquery-3.7.1.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>
+  document.getElementById('btn-entrar').addEventListener('click', function() {
+    document.getElementById('progress-bar').style.width = '100%';
+    document.getElementById('progress-bar').setAttribute('aria-valuenow', 100);
+  });
+</script>
+
 </html>
