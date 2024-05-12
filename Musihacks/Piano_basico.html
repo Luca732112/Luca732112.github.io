@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.js"></script>
+
+</head>
+<body style="background-color: white;">
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f1efef;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="https://www.instagram.com/luca_cartoon8108/">
+                <img src="img/Musihacks.png" href="https://luca732112.github.io" alt="Logo" width="120" height="30">
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link active" title="Este botón es meramente decorativo" href="">🎹 Cursos de Piano</a>
+                <a class="nav-link active" title="Este botón es meramente decorativo" href="">🎻 Música Clásica</a>
+                <a class="nav-link active" title="Este botón es meramente decorativo" href="">🛒 Compra Cursos</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"  style="border: #f1efef; color: black; background-color: #f1efef;" aria-expanded="false">
+                  Regala
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Haz un regalo</a></li>
+                  <li><a class="dropdown-item" href="#">He recibido un regalo</a></li>
+                </ul>
+              </div>
+                <a class="nav-link active" title="Este botón es meramente decorativo" href=""> Opiniones </a>
+                <a class="nav-link active" title="Este botón es meramente decorativo" href=""> FAQs </a>
+                <a class="nav-link active" title="Este botón es meramente decorativo" href="index.html"> Mis Cursos </a>
+                <img src="img/lucataza.png" alt="User" width="50" height="50" style="border-radius: 50%;">
+            </div>
+        </div>
+    </nav>
+     <br><br><br>
+
+    <h4 style="color: #2c3e50; text-align: center; font-family: bebas-neue-pro, sans-serif; font-weight: 550; font-style: normal; text-transform: uppercase; font-size: 75px; line-height: 45px;">
+        lo que aprendí en <br><br>Piano Básico
+     </h3>
+      <br><br>
+    <div class="video1">
+        <video controls width="800" id="video1" style="float: left;">
+            <source src="img/Creep.mp4" type="video/mp4">
+
+            Tu navegador no soporta este elemento
+        </video>
+        <h4 style="color: #2c3e50; text-align: center; font-family: bebas-neue-pro, sans-serif; font-weight: 550; font-style: normal; text-transform: uppercase; font-size: 50px; line-height: 45px;">
+            Creep -Radiohead
+        </h4>
+        
+        <button style="float: right; margin-right: 20pc; height: 75px;" onclick="playPause()">Play/Pause</button>
+
+        
+        
+        
+        <script>
+            var video = document.getElementById("video1");
+    
+            function playPause() {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+        </script>   
+
+    </div>
+    <br><br><br><br>
+    <div class="video2">
+        <video controls width="800" id="video2" style="float: right;">
+            <source src="img/From_now_on.mp4" type="video/mp4">
+
+            Tu navegador no soporta este elemento
+        </video>
+        <h4 style="color: #2c3e50; text-align: center; font-family: bebas-neue-pro, sans-serif; font-weight: 550; font-style: normal; text-transform: uppercase; font-size: 50px; line-height: 45px;">
+            <br><br><br><br><br><br>
+            From now on -The Greatest Showman
+        </h4>
+        
+        <button style="float: left; margin-left: 20pc; height: 75px;" onclick="playPause()">Play/Pause</button>
+
+        
+        
+        
+        <script>
+            var video = document.getElementById("video2");
+    
+            function playPause() {
+                if (video.paused) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+        </script>   
+
+    </div>
+    
+    <script src="js/jquery-3.7.1.js"></script>
+
+</body>
+</html>
