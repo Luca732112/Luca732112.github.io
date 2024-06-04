@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2024 a las 04:40:50
+-- Tiempo de generación: 04-06-2024 a las 03:50:09
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -37,6 +37,18 @@ CREATE TABLE `artists` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `artists_songs`
+--
+
+CREATE TABLE `artists_songs` (
+  `id` int(11) NOT NULL,
+  `artists_id` int(11) NOT NULL,
+  `songs_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `genre`
 --
 
@@ -55,6 +67,49 @@ CREATE TABLE `memberships` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `playlist`
+--
+
+CREATE TABLE `playlist` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `user_id` time NOT NULL,
+  `duration` int(11) NOT NULL,
+  `total_can` int(11) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `playlist_songs`
+--
+
+CREATE TABLE `playlist_songs` (
+  `id` int(11) NOT NULL,
+  `playlist_id` int(11) NOT NULL,
+  `songs_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `songs`
+--
+
+CREATE TABLE `songs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `genero_id` int(11) NOT NULL,
+  `duration` time NOT NULL,
+  `fecha` date NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -80,6 +135,14 @@ ALTER TABLE `artists`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `artists_songs`
+--
+ALTER TABLE `artists_songs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `artists_id` (`artists_id`),
+  ADD KEY `songs_id` (`songs_id`);
+
+--
 -- Indices de la tabla `genre`
 --
 ALTER TABLE `genre`
@@ -90,6 +153,29 @@ ALTER TABLE `genre`
 --
 ALTER TABLE `memberships`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `playlist`
+--
+ALTER TABLE `playlist`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indices de la tabla `playlist_songs`
+--
+ALTER TABLE `playlist_songs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `playlist_id` (`playlist_id`),
+  ADD KEY `songs_id` (`songs_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indices de la tabla `songs`
+--
+ALTER TABLE `songs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `genero_id` (`genero_id`);
 
 --
 -- Indices de la tabla `user`
@@ -109,6 +195,12 @@ ALTER TABLE `artists`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `artists_songs`
+--
+ALTER TABLE `artists_songs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `genre`
 --
 ALTER TABLE `genre`
@@ -121,6 +213,24 @@ ALTER TABLE `memberships`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `playlist`
+--
+ALTER TABLE `playlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `playlist_songs`
+--
+ALTER TABLE `playlist_songs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `songs`
+--
+ALTER TABLE `songs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
@@ -129,6 +239,12 @@ ALTER TABLE `user`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `genre`
+--
+ALTER TABLE `genre`
+  ADD CONSTRAINT `genre_ibfk_1` FOREIGN KEY (`id`) REFERENCES `songs` (`genero_id`);
 
 --
 -- Filtros para la tabla `memberships`
