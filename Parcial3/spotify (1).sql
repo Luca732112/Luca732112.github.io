@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-06-2024 a las 03:32:33
+-- Tiempo de generación: 11-06-2024 a las 03:50:11
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -61,6 +61,18 @@ CREATE TABLE `artists_songs` (
   `songs_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `artists_songs`
+--
+
+INSERT INTO `artists_songs` (`id`, `artists_id`, `songs_id`) VALUES
+(1, 1, 2),
+(2, 3, 6),
+(3, 2, 3),
+(4, 3, 5),
+(5, 1, 1),
+(6, 2, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -106,17 +118,18 @@ INSERT INTO `genre` (`id`, `name`) VALUES
 
 CREATE TABLE `memberships` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `memberships`
 --
 
-INSERT INTO `memberships` (`id`, `name`) VALUES
-(1, 'Premium'),
-(2, 'Freemium'),
-(3, 'Familiar');
+INSERT INTO `memberships` (`id`, `name`, `precio`) VALUES
+(1, 'Premium', 0),
+(2, 'Freemium', 0),
+(3, 'Familiar', 0);
 
 -- --------------------------------------------------------
 
@@ -127,8 +140,8 @@ INSERT INTO `memberships` (`id`, `name`) VALUES
 CREATE TABLE `playlist` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `user_id` time NOT NULL,
-  `duration` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `duration` time NOT NULL,
   `total_can` int(11) NOT NULL,
   `description` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -194,7 +207,7 @@ INSERT INTO `user` (`id`, `name`, `correo`, `memberships_id`) VALUES
 (1, 'Luca', 'lacorreag12@gmail.com', 1),
 (2, 'Kris', 'stakataka3000@gmail.com', 2),
 (3, 'cesar', 'Cesarino@gmail.com', 1),
-(4, 'Alberto', 'alberthanos', 2),
+(4, 'Alberto', 'alberthanos@gmail.com\r\n', 2),
 (5, 'Mario', 'tecmario@gmail.com', 1),
 (6, 'Sonia', 'sngomezm@gmail.com', 3);
 
@@ -280,7 +293,7 @@ ALTER TABLE `artists`
 -- AUTO_INCREMENT de la tabla `artists_songs`
 --
 ALTER TABLE `artists_songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `favoritos`
@@ -341,6 +354,12 @@ ALTER TABLE `artists_songs`
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`songs_id`) REFERENCES `songs` (`id`);
+
+--
+-- Filtros para la tabla `playlist`
+--
+ALTER TABLE `playlist`
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Filtros para la tabla `playlist_songs`
