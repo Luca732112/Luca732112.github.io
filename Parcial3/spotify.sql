@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 02:42 AM
--- Server version: 10.1.39-MariaDB
--- PHP Version: 7.3.5
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-06-2024 a las 02:59:38
+-- Versión del servidor: 10.1.39-MariaDB
+-- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `spotify`
+-- Base de datos: `spotify`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artists`
+-- Estructura de tabla para la tabla `artists`
 --
 
 CREATE TABLE `artists` (
@@ -35,7 +35,7 @@ CREATE TABLE `artists` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `artists`
+-- Volcado de datos para la tabla `artists`
 --
 
 INSERT INTO `artists` (`id`, `name`, `descripcion`) VALUES
@@ -46,13 +46,15 @@ INSERT INTO `artists` (`id`, `name`, `descripcion`) VALUES
 (6, 'The Jackson 5', 'The Jackson 5, desde 1975, The Jacksons, es una boy band estadounidense integrada anteriormente por '),
 (7, 'Abba', 'ABBA es un grupo sueco de música pop, integrado por Agnetha Fältskog, Björn Ulvaeus, Benny Andersson'),
 (8, 'Imagine Dragons', 'Imagine Dragons es una banda estadounidense de pop rock originaria de Las Vegas, Nevada. Está compue'),
-(9, 'Lauv', 'Ari Staprans Leff, conocido como Lauv, es un cantante, compositor y músico estadounidense.​Es conoci'),
-(10, 'Elton John', 'Elton Hercules John es un cantautor, músico y pianista de rock y pop británico.​​​ Con una carrera d');
+(9, 'Earth, Wind & Fire', 'Earth, Wind & Fire, conocidos también como EWF, es un grupo musical estadounidense, formado en Chica'),
+(10, 'Elton John', 'Elton Hercules John es un cantautor, músico y pianista de rock y pop británico.​​​ Con una carrera d'),
+(11, 'BoyWithUke', 'Charley Yang, conocido profesionalmente como BoyWithUke, es un cantante, músico y personalidad de In'),
+(12, 'El Cuarteto de Nos', 'El Cuarteto de Nos es una banda de rock uruguaya formada en Montevideo en 1984. Está integrada por e');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artists_songs`
+-- Estructura de tabla para la tabla `artists_songs`
 --
 
 CREATE TABLE `artists_songs` (
@@ -61,10 +63,23 @@ CREATE TABLE `artists_songs` (
   `songs_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `artists_songs`
+--
+
+INSERT INTO `artists_songs` (`id`, `artists_id`, `songs_id`) VALUES
+(1, 1, 2),
+(2, 3, 6),
+(3, 2, 3),
+(4, 3, 5),
+(5, 1, 1),
+(6, 2, 4),
+(7, 12, 7);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favoritos`
+-- Estructura de tabla para la tabla `favoritos`
 --
 
 CREATE TABLE `favoritos` (
@@ -73,10 +88,20 @@ CREATE TABLE `favoritos` (
   `songs_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `favoritos`
+--
+
+INSERT INTO `favoritos` (`id`, `user_id`, `songs_id`) VALUES
+(1, 1, 2),
+(2, 1, 3),
+(3, 5, 3),
+(4, 2, 7);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `genre`
+-- Estructura de tabla para la tabla `genre`
 --
 
 CREATE TABLE `genre` (
@@ -84,36 +109,67 @@ CREATE TABLE `genre` (
   `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `genre`
+--
+
+INSERT INTO `genre` (`id`, `name`) VALUES
+(1, 'Rock n Roll'),
+(2, 'Pop'),
+(3, 'R\'n\'B​'),
+(4, 'Disco'),
+(5, 'Heavy Metal'),
+(6, 'Funk'),
+(7, 'Soul'),
+(8, 'Glam Rock');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memberships`
+-- Estructura de tabla para la tabla `memberships`
 --
 
 CREATE TABLE `memberships` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `precio` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `memberships`
+--
+
+INSERT INTO `memberships` (`id`, `name`, `precio`) VALUES
+(1, 'Premium', 0),
+(2, 'Freemium', 0),
+(3, 'Familiar', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist`
+-- Estructura de tabla para la tabla `playlist`
 --
 
 CREATE TABLE `playlist` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
-  `user_id` time NOT NULL,
-  `duration` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `duration` time NOT NULL,
   `total_can` int(11) NOT NULL,
   `description` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `playlist`
+--
+
+INSERT INTO `playlist` (`id`, `name`, `user_id`, `duration`, `total_can`, `description`) VALUES
+(1, 'Awesome Mix', 1, '06:18:00', 3, 'Best Music of all the times');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlist_songs`
+-- Estructura de tabla para la tabla `playlist_songs`
 --
 
 CREATE TABLE `playlist_songs` (
@@ -123,10 +179,22 @@ CREATE TABLE `playlist_songs` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `playlist_songs`
+--
+
+INSERT INTO `playlist_songs` (`id`, `playlist_id`, `songs_id`, `user_id`) VALUES
+(1, 1, 2, 1),
+(2, 1, 1, 1),
+(3, 1, 3, 1),
+(4, 1, 4, 1),
+(5, 1, 5, 1),
+(6, 1, 6, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `songs`
+-- Estructura de tabla para la tabla `songs`
 --
 
 CREATE TABLE `songs` (
@@ -138,10 +206,23 @@ CREATE TABLE `songs` (
   `active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `songs`
+--
+
+INSERT INTO `songs` (`id`, `name`, `genero_id`, `duration`, `fecha`, `active`) VALUES
+(1, 'Stone Cold Crazy', 1, '02:13:00', '1974-11-08', 1),
+(2, 'Hammer to Fall', 5, '04:26:00', '1984-09-10', 1),
+(3, 'Starman', 2, '04:14:00', '1972-04-03', 1),
+(4, 'Moonage Daydream', 1, '04:39:00', '1972-04-03', 1),
+(5, 'Eleanor Rigby', 2, '02:06:00', '1966-08-08', 1),
+(6, 'Hey Jude', 2, '03:57:00', '1968-08-26', 1),
+(7, 'Ya no sé que hacer conmigo', 1, '00:04:01', '2007-04-04', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE `user` (
@@ -152,17 +233,29 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `correo`, `memberships_id`) VALUES
+(1, 'Luca', 'lacorreag12@gmail.com', 1),
+(2, 'Kris', 'stakataka3000@gmail.com', 2),
+(3, 'cesar', 'Cesarino@gmail.com', 1),
+(4, 'Alberto', 'alberthanos@gmail.com\r\n', 2),
+(5, 'Mario', 'tecmario@gmail.com', 1),
+(6, 'Sonia', 'sngomezm@gmail.com', 3);
+
+--
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `artists`
+-- Indices de la tabla `artists`
 --
 ALTER TABLE `artists`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `artists_songs`
+-- Indices de la tabla `artists_songs`
 --
 ALTER TABLE `artists_songs`
   ADD PRIMARY KEY (`id`),
@@ -170,7 +263,7 @@ ALTER TABLE `artists_songs`
   ADD KEY `songs_id` (`songs_id`);
 
 --
--- Indexes for table `favoritos`
+-- Indices de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD PRIMARY KEY (`id`),
@@ -178,26 +271,26 @@ ALTER TABLE `favoritos`
   ADD KEY `songs_id` (`songs_id`);
 
 --
--- Indexes for table `genre`
+-- Indices de la tabla `genre`
 --
 ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `memberships`
+-- Indices de la tabla `memberships`
 --
 ALTER TABLE `memberships`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `playlist`
+-- Indices de la tabla `playlist`
 --
 ALTER TABLE `playlist`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `playlist_songs`
+-- Indices de la tabla `playlist_songs`
 --
 ALTER TABLE `playlist_songs`
   ADD PRIMARY KEY (`id`),
@@ -206,97 +299,103 @@ ALTER TABLE `playlist_songs`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `songs`
+-- Indices de la tabla `songs`
 --
 ALTER TABLE `songs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `genero_id` (`genero_id`);
 
 --
--- Indexes for table `user`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `memberships_id` (`memberships_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `artists`
+-- AUTO_INCREMENT de la tabla `artists`
 --
 ALTER TABLE `artists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `artists_songs`
+-- AUTO_INCREMENT de la tabla `artists_songs`
 --
 ALTER TABLE `artists_songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `favoritos`
+-- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `genre`
+-- AUTO_INCREMENT de la tabla `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `memberships`
+-- AUTO_INCREMENT de la tabla `memberships`
 --
 ALTER TABLE `memberships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `playlist`
+-- AUTO_INCREMENT de la tabla `playlist`
 --
 ALTER TABLE `playlist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `playlist_songs`
+-- AUTO_INCREMENT de la tabla `playlist_songs`
 --
 ALTER TABLE `playlist_songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `songs`
+-- AUTO_INCREMENT de la tabla `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `artists_songs`
+-- Filtros para la tabla `artists_songs`
 --
 ALTER TABLE `artists_songs`
   ADD CONSTRAINT `artists_songs_ibfk_1` FOREIGN KEY (`artists_id`) REFERENCES `artists` (`id`),
   ADD CONSTRAINT `artists_songs_ibfk_2` FOREIGN KEY (`songs_id`) REFERENCES `songs` (`id`);
 
 --
--- Constraints for table `favoritos`
+-- Filtros para la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`songs_id`) REFERENCES `songs` (`id`);
 
 --
--- Constraints for table `playlist_songs`
+-- Filtros para la tabla `playlist`
+--
+ALTER TABLE `playlist`
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `playlist_songs`
 --
 ALTER TABLE `playlist_songs`
   ADD CONSTRAINT `playlist_songs_ibfk_1` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`),
@@ -304,13 +403,13 @@ ALTER TABLE `playlist_songs`
   ADD CONSTRAINT `playlist_songs_ibfk_3` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `songs`
+-- Filtros para la tabla `songs`
 --
 ALTER TABLE `songs`
   ADD CONSTRAINT `songs_ibfk_1` FOREIGN KEY (`genero_id`) REFERENCES `genre` (`id`);
 
 --
--- Constraints for table `user`
+-- Filtros para la tabla `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`memberships_id`) REFERENCES `memberships` (`id`);
