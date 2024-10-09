@@ -6,10 +6,8 @@ $(document).ready(function(){
         alert(nombre);
     });
 
-    $('#texto').click(function(){
-        $('#texto').css("display", "inherit").fadeOut(2000);
+    $('#botton').click(function(){
+        $('#texto').fadeToggle("slow");
     });
-
-    
 
 })
