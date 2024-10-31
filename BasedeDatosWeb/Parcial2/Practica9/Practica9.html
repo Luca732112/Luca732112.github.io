@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>juego de loteria con JQUERY</title>
     <script src="jquery-3.7.1.js"></script>
@@ -10,18 +9,20 @@
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-    <h1>la loteria</h1>
-    <div id="carta_activa"></div>
-    <button id="dar_carta"> dar carta </button>
-
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6" class="card">
-                <div class="row" id="carta1" style="border: 3px solid black;"></div>
+        <h1 class="text-center">La lotería mexicana <br> <button id="dar_carta" class="btn btn-primary">Dar carta activa</button></h1><hr>
+        <div id="carta_activa" class="text-center"></div>
+    </div>
+
+    <div class="container px-4">
+        <div class="row gx-5">
+            <div class="col">
+                <div class="p-2 border bg light" id="carta1"></div>
+                <span id="n_carta">0</span>
             </div>
-            <div class="col-sm-6" class="card">
-                <div class="row" id="carta2" style="border: 3px solid black;"></div>
-            </div>            
+            <div class="col">
+                <div class="p-2 border bg light" id="carta2"></div>
+            </div>
         </div>
     </div>
 

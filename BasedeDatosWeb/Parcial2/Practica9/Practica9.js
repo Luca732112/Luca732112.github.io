@@ -1,17 +1,18 @@
-$(document).ready(function(){
+  $(document).ready(function(){
     let cartas = new Array(54).fill(false);
     var cont = 0;
+    var n_carta = 0;
+    //funcion click del boton a dar carta
     $("#dar_carta").click(function(){
         var b = true;
         var cont = 0;
         while(b){
-            var b = true;
             var num = Math.floor(Math.random()*54) + 1;
             console.log("numero de cartas= "+num);
             if(cartas[b-1] == true){
                 continue;
              }else{
-                $("#carta_activa").html("<img src='loteria/"+num+".jpg'>");
+                $("#carta_activa").html("<img width='120px' src='loteria/"+num+".jpg'>");
                 cartas[num-1] = true;
                 b=false;
                 cont++;
